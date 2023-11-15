@@ -1,0 +1,400 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : RiakBucket
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x152799530093c1f0
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  internal_properties : CAAAAAgAAADIrhkYvV4+DaOlTolcs6lMpKskU4bfOqcA0SFdTOW5EbmVZazZSMdJwcwwoVEM7SohMvJ3rzJPY2GxyTtmNeZQW1Yre+284SA=
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      RiakBucket est une Classe
+      protegee
+      	m_sAdresseServeur est une chaine
+      	m_sAdresseBucket est une chaine
+      	m_sNomBucket est une chaine
+      
+      FIN
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1524355580659286512
+     type_code : 27
+     code : |1+
+      PROCEDURE Constructeur( sAdresse est une chaine, sNomBucket est une chaine )
+      
+      m_sAdresseServeur = sAdresse
+      m_sAdresseBucket = sAdresse+["/"]+"riak/"+URLEncode(chaineversutf8(sNomBucket))
+      m_sNomBucket = URLEncode(ChaîneVersUTF8(sNomBucket))
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1524355580659352048
+     type_code : 28
+     code : |1+
+      PROCEDURE Destructeur()
+      
+     type : 655360
+   -
+     name : ObjetEcrit
+     internal_properties : CAAAAAgAAADCDrkgDPaEsPT5giiw2MtJH8p2how3agWCXcypVji/zVP3Z0Jfkunm01HP484NiXm+0YYfsNXdHTj8dwhgidSfnPpxR2H+ZA8nt/A7nlOqCCxQ09Kw9IMN2ChPFRcenhKdO/cEI+e7/cLci1qkBLoI5nj7vzOdfM5iIBZuVjJRBJpNdqqJKvhVTDuSBGXlOspw3RI32IbR
+     procedure_id : 1524355580659417584
+     type_code : 12
+     code : |1+
+      // Résumé : Ajoute une variable dans le bucket
+      // Syntaxe :
+      //[ <Résultat> = ] ObjetEcrit (<variable> [, <sNomClé> est chaîne])
+      //
+      // Paramètres :
+      //	variable : Variable à ajouter
+      //	sNomClé (chaîne ANSI - valeur par défaut="") : Nom de la clé, si le nom n'est pas renseigné, Riak crée un identifiant qui est retourné par la méthode
+      // Valeur de retour :
+      // 	chaîne ANSI : Nom de la clé ou identifiant généré par Riak
+      //
+      //	sTypeDonnée (chaîne ANSI - valeur par défaut="") : <indiquez ici le rôle de sTypeDonnée>// Traitement automatique des erreurs :   exécuter le bloc de code CAS ERREUR
+      //
+      
+      PROCEDURE ObjetEcrit( variable, local sNomClé est une chaine = "" )
+      
+      // Référence : http://docs.basho.com/riak/latest/dev/references/http/store-object/
+      
+      requete est une httpRequête
+      requete.URL = m_sAdresseBucket+["/"]+URLEncode(ChaîneVersUTF8(sNomClé))
+      requete.Méthode = httpPost
+      
+      si TypeVar(variable) _dans_ (wlTableau, wlStructure, wlInstance) ALORS
+      	bufEncode est un buffer
+      	quand exception dans
+      		Sérialise(variable,bufEncode,psdJSON)
+      	faire
+      		erreurdeclenche(1,"Echec de l'encodage de la variable en JSON, erreur renvoyée : "+ExceptionInfo(errComplet))
+      		renvoyer ""
+      	fin
+      	requete.Entête["Content-Type"] = "application/json"		// Les données complexes seront toujours stockées sérialisées en JSON
+      	requete.Contenu = bufEncode
+      sinon
+      	requete.Entête["Content-Type"] = "text/plain"
+      	requete.Contenu = ChaîneVersUTF8(variable)
+      FIN
+      
+      // Le code de retour "normal" est 204 (No Content)
+      reponse est une httpRéponse = HTTPEnvoie(requete)
+      selon reponse.CodeEtat	
+      	cas 200 // OK
+      		// Pas d'erreur - l'objet a été remplacé
+      	cas 201 // Créé
+      		// Pas d'erreur - l'objet a été ajouté
+      	cas 204	// Pas de contenu
+      		// Pas d'erreur - l'objet a été ajouté ou remplacé (et on n'avait pas demandé à recevoir une copie du corps de la requête)
+      	cas 300 // Choix multiples
+      		// Pas d'erreur - l'objet a été ajouté ou remplacé (on avait demandé à recevoir une copie du corps de la requête mais il y a une ambiguïté)
+      		dbgAssertion(faux,"Pas d'erreur mais ce cas ne devrait pas se produire si on n'ajoute pas l'entête returnbody=true")
+      	autre cas
+      		ErreurDéclenche(1,ChaîneConstruit("Erreur lors de l'ajout, code HTTP renvoyé : %1, contenu : %2",reponse.CodeEtat,reponse.Contenu))
+      		renvoyer ""
+      FIN
+      
+      // Retourne le nom créé 
+      // Si la clé a été renseignée, le nom est égal à la clé 
+      // Si la clé n'a pas été renseignée, le nom est généré par le serveur
+      si sNomClé="" alors 
+      	sNomClé = reponse.Entête["Location"]
+      fin
+      
+      renvoyer sNomClé
+      
+      CAS ERREUR:
+      ErreurPropage()
+      RENVOYER ""
+     type : 458752
+   -
+     name : ObjetLit
+     internal_properties : CAAAAAgAAABUHz8hVhFi02/J7EhBrMlSNO0MeAqWBppfCjnxm/4kgJdm7XWgB5T6wjMexC1lxpG0E9/miOIxDqpCyq3t86PoLtBkATH/1oB8x09XjEnNP/qUDpwcbSPg0NLupmnY36w8JgJ/5axk6CsPJRVV4Ib+UFiKlFTTIkF739C1c2Up+mtV1Q==
+     procedure_id : 1524355580659483120
+     type_code : 12
+     code : |1+
+      // Résumé : Lit un objet dans la base Riak
+      // Syntaxe :
+      //ObjetLit (<variable>, <sNomClé> est chaîne [, <bDeserialiseResultat> est booléen])
+      //
+      // Paramètres :
+      //	variable : variable contenant le résultat de la lecture
+      //	sNomClé (chaîne ANSI) : nom de la clé contenant l'objet à lire
+      //	bDeserialiseResultat (booléen - valeur par défaut=0) : vrai s'il faut désérialiser les réponses JSON
+      // Valeur de retour :
+      // 	Aucune
+      // Traitement automatique des erreurs :   exécuter le bloc de code CAS ERREUR
+      //
+      
+      PROCEDURE ObjetLit(variable, sNomClé est une chaine, bDeserialiseResultat est un booleen = faux )
+      
+      // Référence : http://docs.basho.com/riak/latest/dev/references/http/fetch-object/
+      
+      requete est une httpRequête
+      requete.URL = m_sAdresseBucket+["/"]+URLEncode(ChaîneVersUTF8(sNomClé))
+      requete.Méthode = httpget
+      
+      reponse est une httpRéponse = HTTPEnvoie(requete)
+      selon reponse.CodeEtat
+      	cas 200 // OK, pas d'erreur
+      	cas 300	// Choix multiples - dans ce cas la variable contient la liste des identifiants des enregistrements "frères"
+      		// Pour lire un enregistrement il faut refaire la requête en ajoutant son identifiant à la suite de la clé
+      		ErreurDéclenche(2,ChaîneConstruit("Plusieurs résultats possibles. Il faut refaire la requête en ajoutant l'identifiant recherché à la clé."))
+      		variable = requete.Contenu
+      		retour
+      	cas 304 // Non modifié
+      		dbgAssertion(Faux,"Pas d'erreur mais ce cas ne devrait pas se produire si on n'ajoute pas l'une des entêtes If-None-Match ou If-Modified-Since")
+      	autre cas
+      		ErreurDéclenche(1,ChaîneConstruit("Erreur lors de la lecture, code HTTP renvoyé : %1, contenu : %2",reponse.CodeEtat,reponse.Contenu))
+      		retour
+      FIN
+      
+      sTypeReponse est une chaine = reponse.Entête["Content-Type"]
+      si  sTypeReponse = "application/json" _et_ bDeserialiseResultat alors
+      	QUAND EXCEPTION DANS
+      		deSérialise(variable,reponse.Contenu,psdJSON)
+      	FAIRE
+      		ErreurDéclenche(1,"Echec du décodage de la variable en JSON, erreur renvoyée : "+ExceptionInfo(errComplet))
+      		retour
+      	FIN
+      sinon	
+      	variable = UTF8VersChaîne(reponse.Contenu)
+      FIN
+      
+      CAS ERREUR:
+      ErreurPropage()
+      retour
+      
+      
+     type : 458752
+   -
+     name : ObjetSupprime
+     internal_properties : CAAAAAgAAABUHz8hVhFi02/J7EhBrMlSNO0MeAqWBppfCjnxm/4kgJdm7XWgB5T6wjMexC1lxpG0E9/miOIxDqpCyq3t86PoLtBkATH/1oB8x09XjEnNP/qUDpwcbSPg0NLupmnY36w8JgJ/5axk6CsPJRVV4Ib+UFiKlFTTIkF739C1c2Up+mtV1Q==
+     procedure_id : 1524355580659548656
+     type_code : 12
+     code : |1+
+      // Résumé : Supprime un objet dans la base Riak
+      // Syntaxe :
+      //ObjetSupprime (<sNomClé> est chaîne)
+      //
+      // Paramètres :
+      //	sNomClé (chaîne ANSI) : clé de l'objet à supprimer
+      // Valeur de retour :
+      // 	Aucune
+      // Traitement automatique des erreurs :   exécuter le bloc de code CAS ERREUR
+      //
+      
+      PROCEDURE ObjetSupprime( sNomClé est une chaine )
+      
+      // Référence : http://docs.basho.com/riak/latest/dev/references/http/delete-object/
+      
+      requete est une httpRequête
+      requete.URL = m_sAdresseBucket+["/"]+URLEncode(ChaîneVersUTF8(sNomClé))
+      requete.Méthode = httpDelete
+      
+      reponse est une httpRéponse = HTTPEnvoie(requete)
+      selon reponse.CodeEtat
+      	cas 204	// Pas de contenu
+      		// L'objet existait et a été supprimé
+      	cas 404 // Non trouvé
+      		// L'objet n'existe pas
+      	AUTRE CAS
+      		ErreurDéclenche(1,ChaîneConstruit("Erreur lors de la suppression, code HTTP renvoyé : %1, contenu : %2",reponse.CodeEtat,reponse.Contenu))
+      FIN
+      
+      CAS ERREUR:
+      ErreurPropage()
+      RETOUR
+      
+     type : 458752
+   -
+     name : ObjetListeClé
+     internal_properties : CAAAAAgAAAAiLlmAAabozJS7KCA2wB3hMazy9Hbnvh0io6LR/JApRTE1u5g1ZmF2czshGyTtWwF4G+bpnilFVVTazfjuGbLL4ihFBSO2mNfPYQJotwAty9Fv8rWbgVSa1Vc+piBj0X2mzgKLWriAnqP31gcNwX2rc/dK5hLW0Wvfv7WPt9/A2zNwAakgTyECKSpBZdaOsRkp+PLXOGax
+     procedure_id : 1524355580659614192
+     type_code : 12
+     code : |1+
+      // Résumé : Retourne la liste des clés d'un bucket dans un tableau de chaînes
+      // Syntaxe :
+      //[ <Résultat> = ] ObjetListeClé ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	tableau : liste des clés
+      // Traitement automatique des erreurs :   exécuter le bloc de code CAS ERREUR
+      //
+      
+      PROCEDURE ObjetListeClé()
+      
+      tabClés est un tableau de chaines
+      
+      // Référence : http://docs.basho.com/riak/latest/dev/references/http/list-keys/
+      requete est une httpRequête
+      requete.URL = m_sAdresseServeur+["/"]+"buckets/"+m_sNomBucket+"/keys?keys=true"
+      requete.Méthode = httpGet
+      
+      reponse est une httpRéponse = HTTPEnvoie(requete)
+      sContentTypeReponse est une chaine = reponse.Entête["Content-Type"]
+      SI reponse.CodeEtat<>200 _ou_ sContentTypeReponse<>"application/json" ALORS
+      	ErreurDéclenche(1,ChaîneConstruit("Erreur lors du listage des clés, code HTTP renvoyé : %1, contenu : %2",reponse.CodeEtat,reponse.Contenu))
+      	RENVOYER tabClés
+      FIN
+      
+      vInfo est un variant = JSONVersVariant(reponse.Contenu)
+      POUR TOUT sClé de vInfo.keys
+      	Ajoute(tabClés,sClé)
+      FIN
+      
+      RENVOYER tabClés
+      
+      CAS ERREUR:
+      ErreurPropage()
+      RENVOYER tabClés
+      
+     type : 458752
+   -
+     name : PropriétéLit
+     internal_properties : CAAAAAgAAABUHz8hVhFi02/J7EhBrMlSNO0MeAqWBppfCjnxm/4kgJdm7XWgB5T6wjMexC1lxpG0E9/miOIxDqpCyq3t86PoLtBkATH/1oB8x09XjEnNP/qUDpwcbSPg0NLupmnY36w8JgJ/5axk6CsPJRVV4Ib+UFiKlFTTIkF739C1c2Up+mtV1Q==
+     procedure_id : 1524355580659679728
+     type_code : 12
+     code : |1+
+      // Résumé : Lecture des propriétés du bucket
+      // Syntaxe :
+      //[ <Résultat> = ] PropriétéLit ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	variant : Liste des propriétés
+      //
+      // Traitement automatique des erreurs :   exécuter le bloc de code CAS ERREUR
+      //
+      
+      PROCEDURE PropriétéLit()
+      
+      vBlocProp est un variant = null
+      
+      // Référence : http://docs.basho.com/riak/latest/dev/references/http/get-bucket-props/
+      
+      requete est une httpRequête
+      requete.URL = m_sAdresseServeur+["/"]+"buckets/"+m_sNomBucket+"/props"
+      requete.Méthode = httpGet
+      
+      reponse est une httpRéponse = HTTPEnvoie(requete)
+      sContentTypeReponse est une chaine = reponse.Entête["Content-Type"]
+      SI reponse.CodeEtat<>200 _OU_ sContentTypeReponse<>"application/json" ALORS
+      	ErreurDéclenche(1,ChaîneConstruit("Erreur lors de la lecture, code HTTP renvoyé : %1, contenu : %2",reponse.CodeEtat,reponse.Contenu))
+      	RENVOYER vBlocProp
+      FIN
+      
+      QUAND EXCEPTION DANS
+      	vBlocProp = JSONVersVariant(reponse.Contenu)
+      FAIRE
+      	ErreurDéclenche(1,"Echec du décodage de la variable en JSON, erreur renvoyée : "+ExceptionInfo(errComplet))
+      FIN
+      
+      renvoyer vBlocProp
+      
+      CAS ERREUR:
+      ErreurPropage()
+      RENVOYER vBlocProp
+     type : 458752
+   -
+     name : PropriétéEcrit
+     internal_properties : CAAAAAgAAABUHz8hVhFi02/J7EhBrMlSNO0MeAqWBppfCjnxm/4kgJdm7XWgB5T6wjMexC1lxpG0E9/miOIxDqpCyq3t86PoLtBkATH/1oB8x09XjEnNP/qUDpwcbSPg0NLupmnY36w8JgJ/5axk6CsPJRVV4Ib+UFiKlFTTIkF739C1c2Up+mtV1Q==
+     procedure_id : 1524355580659745264
+     type_code : 12
+     code : |1+
+      // Résumé : Modifie une ou plusieurs propriétés d'un bucket
+      // Syntaxe :
+      //PropriétéEcrit (<vBlocProp> est variant)
+      //
+      // Paramètres :
+      //	vBlocProp (variant) : variant contenant la ou les propriétés à écrire. Les propriétés qui ne sont pas présentes dans le variant gardent leur valeur sur le serveur.
+      // Valeur de retour :
+      // 	Aucune
+      // Traitement automatique des erreurs :   exécuter le bloc de code CAS ERREUR
+      //
+      
+      PROCEDURE PropriétéEcrit(vBlocProp est un variant)
+      
+      // Référence : http://docs.basho.com/riak/latest/dev/references/http/set-bucket-props/
+      
+      requete est une httpRequête
+      requete.URL = m_sAdresseServeur+["/"]+"buckets/"+m_sNomBucket+"/props"
+      requete.Méthode = httpPut
+      requete.ContentType = "application/json"
+      
+      bufSerial est un buffer
+      QUAND EXCEPTION DANS
+      	sérialise(vBlocProp,bufSerial,psdJSON)
+      	requete.Contenu = bufSerial
+      FAIRE
+      	ErreurDéclenche(1,"Echec de l'encodage de la variable en JSON, erreur renvoyée : "+ExceptionInfo(errComplet))
+      	retour
+      FIN
+      
+      reponse est une httpRéponse = HTTPEnvoie(requete)
+      SI reponse.CodeEtat<>204 ALORS
+      	ErreurDéclenche(1,ChaîneConstruit("Erreur lors de la lecture, code HTTP renvoyé : %1, contenu : %2",reponse.CodeEtat,reponse.Contenu))
+      FIN
+      
+      CAS ERREUR:
+      ErreurPropage()
+      retour
+      
+     type : 458752
+   -
+     name : PropriétéRAZ
+     internal_properties : CAAAAAgAAAAkIFuKyVq5AMB9cujkIJvZS7ZSrjCngm0uuSQBghhfjb9DG/qTuomut62/A/J9yfGS9bJ3/P0dvWSQx3B8eWQXSM41f4WmjO+DWzhhuCEAFoJKhaD2GukvPsKR61HUbEDr9ekSIb2Zn6D21aCGWohutELN5VFLcsj4iojM+BB/elD/sPgnUD5/Oj1sIo/L2IgbgAzNNmC3
+     procedure_id : 1524355580659810800
+     type_code : 12
+     code : |1-
+      // Résumé : Réinitialise les propriétés d'un bucket à leurs valeurs par défaut
+      // Syntaxe :
+      //PropriétéRAZ ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	Aucune
+      // Traitement automatique des erreurs :   exécuter le bloc de code CAS ERREUR
+      //
+      
+      PROCEDURE PropriétéRAZ()
+      
+      // Référence : http://docs.basho.com/riak/latest/dev/references/http/reset-bucket-props/
+      
+      requete est une httpRequête
+      requete.URL = m_sAdresseBucket+["/"]+"props"
+      requete.Méthode = httpDelete
+      
+      reponse est une httpRéponse = HTTPEnvoie(requete)
+      SI reponse.CodeEtat<>204 ALORS
+      	ErreurDéclenche(1,ChaîneConstruit("Erreur lors de la réinitialisation, code HTTP renvoyé : %1, contenu : %2",reponse.CodeEtat,reponse.Contenu))
+      FIN
+      
+      CAS ERREUR:
+      ErreurPropage()
+      RETOUR
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x1148ab680af15dc1
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

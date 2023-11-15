@@ -1,0 +1,198 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : RiakConnexion
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1527996300bd00fc
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      RiakConnexion est une Classe
+      	protegee
+      	m_sAdresse est une chaine	// Adresse (ou nom d'hôte) et port de connexion au serveur Riak (ou au cluster)
+      FIN
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1524355649381466364
+     type_code : 27
+     code : |1+
+      PROCEDURE Constructeur( sAdresse est une chaine )
+      
+      m_sAdresse = sAdresse
+      
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1524355649381531900
+     type_code : 28
+     code : |1+
+      PROCEDURE Destructeur()
+      
+     type : 655360
+   -
+     name : BucketListe
+     internal_properties : CAAAAAgAAABUHz8hVhFi02/J7EhBrMlSNO0MeAqWBppfCjnxm/4kgJdm7XWgB5T6wjMexC1lxpG0E9/miOIxDqpCyq3t86PoLtBkATH/1oB8x09XjEnNP/qUDpwcbSPg0NLupmnY36w8JgJ/5axk6CsPJRVV4Ib+UFiKlFTTIkF739C1c2Up+mtV1Q==
+     procedure_id : 1524355649381597436
+     type_code : 12
+     code : |1-
+      // Résumé : Liste les buckets présents sur un serveur Riak
+      // Syntaxe :
+      //[ <Résultat> = ] BucketListe ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	tableau : tableau de chaînes
+      // Traitement automatique des erreurs :   exécuter le bloc de code CAS ERREUR
+      //
+      
+      PROCEDURE BucketListe()
+      
+      tabBuckets est un tableau de chaines
+      
+      // Référence : http://docs.basho.com/riak/latest/dev/references/http/list-buckets/
+      requete est une httpRequête
+      requete.URL = m_sAdresse+["/"]+"riak?buckets=true"
+      
+      reponse est une httpRéponse = HTTPEnvoie(requete)
+      sContentTypeReponse est une chaine = reponse.Entête["Content-Type"]
+      SI reponse.CodeEtat<>200 _ou_ sContentTypeReponse<>"application/json" ALORS
+      	ErreurDéclenche(1,ChaîneConstruit("Echec du listage des buckets, code HTTP renvoyé : %1, contenu : %2",reponse.CodeEtat,reponse.Contenu))
+      	RENVOYER tabBuckets
+      FIN
+      
+      vInfo est un variant = JSONVersVariant(reponse.Contenu)
+      pour tout sBucket de vInfo.buckets
+      	ajoute(tabBuckets,sBucket)
+      FIN
+      
+      RENVOYER tabBuckets
+      
+      CAS ERREUR:
+      ErreurPropage()
+      RENVOYER tabBuckets
+     type : 458752
+   -
+     name : PingServeur
+     internal_properties : CAAAAAgAAABUHz8hVhFi02/J7EhBrMlSNO0MeAqWBppfCjnxm/4kgJdm7XWgB5T6wjMexC1lxpG0E9/miOIxDqpCyq3t86PoLtBkATH/1oB8x09XjEnNP/qUDpwcbSPg0NLupmnY36w8JgJ/5axk6CsPJRVV4Ib+UFiKlFTTIkF739C1c2Up+mtV1Q==
+     procedure_id : 1524355649381662972
+     type_code : 12
+     code : |1+
+      // Résumé : Interroge le serveur Riak pour vérifier qu'il est opérationnel
+      // Syntaxe :
+      //[ <Résultat> = ] PingServeur ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	booléen : Vrai si le serveur a répondu OK
+      // Traitement automatique des erreurs :   exécuter le bloc de code CAS ERREUR
+      //
+      
+      PROCEDURE PingServeur()
+      
+      // Référence : http://docs.basho.com/riak/latest/dev/references/http/ping/
+      requete est une httpRequête
+      requete.URL = m_sAdresse+["/"]+"ping"
+      
+      reponse est une httpRéponse = HTTPEnvoie(requete)
+      SI reponse.CodeEtat<>200 _ou_ reponse.Contenu<>"OK" ALORS
+      	ErreurDéclenche(1,ChaîneConstruit("Echec du ping, code HTTP renvoyé : %1, contenu : %2",reponse.CodeEtat,reponse.Contenu))
+      	renvoyer faux
+      FIN
+      
+      RENVOYER vrai
+      
+      CAS ERREUR:
+      ErreurPropage()
+      RENVOYER faux
+      
+     type : 458752
+   -
+     name : EtatServeur
+     internal_properties : CAAAAAgAAAAJwhLTTV2MkYPTUIZF2qyQbpo3oJBwQ8qUFK6bn+AQpSJx2p9419eS7z5qq+CBD8FOgypNVuGBzTTNXgYV9mXY7pGy7zfDjvogNvPqyBqW99lnKSQwbqhO757pGzaF95aiUeB8vdxumZmcd5ztCbeOh96MzYtWO+gJNiBGE7+K+s4wvAUGpLasVqz/ebNhmln6doh1MMYyklJ4Xm3N1LB7YrjUMSYINdll2YAlaYTJoQRkj9V2bQ==
+     procedure_id : 1524355649381728508
+     type_code : 12
+     code : |1-
+      // Résumé : Retourne l'état du serveur Riak
+      // Syntaxe :
+      //[ <Résultat> = ] EtatServeur ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	variant : propriétés du serveur
+      // Traitement automatique des erreurs :   exécuter le bloc de code CAS ERREUR
+      //
+      
+      PROCEDURE EtatServeur()
+      
+      vStat est un variant = NULL
+      
+      // Référence : http://docs.basho.com/riak/latest/dev/references/http/status/
+      requete est une httpRequête
+      requete.URL = m_sAdresse+["/"]+"stats"
+      
+      reponse est une httpRéponse = HTTPEnvoie(requete)
+      selon reponse.CodeEtat
+      	cas 200
+      		vStat = JSONVersVariant(reponse.Contenu)
+      	cas 404
+      		ErreurDéclenche(1,"Les statistiques ne sont pas activées sur ce serveur.")
+      		vStat = ""
+      	AUTRE CAS
+      		ErreurDéclenche(2,ChaîneConstruit("Erreur de lecture des stats, code HTTP renvoyé : %1, contenu : %2",reponse.CodeEtat,reponse.Contenu))
+      FIN
+      
+      RENVOYER vStat
+      
+      CAS ERREUR:
+      	ErreurPropage()
+      	renvoyer vStat
+     type : 458752
+   -
+     name : BucketOuvre
+     procedure_id : 1524355649381794044
+     type_code : 12
+     code : |1+
+      // Résumé : Crée l'objet pour manipuler un bucket
+      // Syntaxe :
+      //[ <Résultat> = ] BucketOuvre (<sNomBucket> est chaîne)
+      //
+      // Paramètres :
+      //	sNomBucket (chaîne ANSI) : nom du bucket
+      // Valeur de retour :
+      // 	RiakBucket : objet d'accès au bucket
+      //
+      PROCEDURE BucketOuvre( sNomBucket est une chaine ) : riakBucket
+      
+      si sNomBucket~="" ALORS
+      	ErreurDéclenche(1,"Nom de bucket non renseigné.")
+      	renvoyer null
+      FIN
+      
+      clBucket est un riakBucket(m_sAdresse,sNomBucket)
+      
+      renvoyer clBucket
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x1148ab690afc5de0
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

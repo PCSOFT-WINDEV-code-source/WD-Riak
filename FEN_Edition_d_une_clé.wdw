@@ -1,0 +1,216 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : FEN_Edition_d_une_clé
+ major_version : 28
+ minor_version : 0
+ type : 2
+ description : ""
+ subtype : 0
+window :
+ name : FEN_Edition_d_une_clé
+ identifier : 0x24b00eb504e3f81e
+ internal_properties : CAAAAAgAAAADizOBVXpZ3djw5uhac4K30xEb3eMhgheXW+JSWALxvy/dlWF9X2yFj+3NHyspI0yMKo8T5bNmLQzOOcOGjhSOf4D6/So3rm70daIYWorXiRbGdHajEnP4N/uFVLRdsGnqyzIoXKBnESuazoif/DJsWbkll786qYl2xhBiCiI/sCU6nbuPE0I3QDcKDlZCg+LA1PPFugLyi6ePlpbfg8d5YzdL+TaTtnbqwJjOY+sW343hItl7mEq+M08ojHKes+a1SULXR+rYJ68DUkrNuvEeQkJzFt2RotTovsELBfHqf9J7wBW9jes4YoYwDDGqqfJMxvpJdjjBrkpEfvG9d7hItdrDLopcsCpXTYA8BTbqNKn4CvUVLi43URtR7dbKgPUsz0I1mkZwtcqpRTrb0EraU13GFEvWBKwq/en+KAjmD3dF/nr9lnVn4DjNL87qmspBOLg/2D31F1hw81G4Ni7WQcZeq5ff1X3vJfUjS4ibBRMIajJzS+S7CguGFNOFzRjTgwjKuOgcDSSaXpJpXSztgdmZaqZ+iveyurR4/vGfs9I07rl/1iDSWSlCT8iXtUJDckT+EK44SnkiLMupr5zABNpgYT09dxmgT80/j2SqRenNxreO/OwLYfn5KzYbJ4isqO8yAFhqgzSAZlsU/CDtHkPiKUD8CABDl+LqLcBYs1H1MEBHxeBCA4gKRprmh6auPc+Ewm0BdnAK4I5DD/8d9HA3VtgIgLEQpy9tLsURJXMB1jF0R+6p+pgExrJGSv5URJkNRWV1lqQE4u6yojbjV9WZl1j9TUEXlCi9gwr1GSVJb2PJtEIuvSTuLmj73sxyHrQKYvVFShtbzcctKvV5yepdttSknq6fowjVu0d5P1rgsjJ5u2o6liC5pzm/wqGI3suIsvwWtOdkngJyERKWSLOvbEl9sIi2Hk7ThfxW8hAQ
+ properties :
+  width : 779
+  height : 277
+  widthClient : 777
+  heightClient : 245
+ controls :
+  -
+    name : SAI_Clé
+    identifier : 0x24b00ebd04f917cb
+    internal_properties : CAAAAAgAAABdxn2NLCMvMzhrXRjXWF6T8E+aRfbuRkWh4DseKOfcz9gIt4qcUPdqH2J4WnPkNUeEIDuUGi1KB3h853LyRJe6X0/OxfD5rPUfkd400AVL+s4xg8PSCOdu3HeDQ4chm6y8OgicaLx+/JxMFfF1/VFdbXHxgdHh7Mq9AQgMMEGn0dOtlV+n4Yda3QLgdeALg9caGN9O9UA6zZC/+DKbePeeu/R3qR/h5FPJFlNy03INQlWjxAzaB19i4+J5ZVsHxhr4YZbp9gHFSBQfZQ0BwURQ0nR3lYa5BQEivC77fOeW4PdljvGg1kyr9THCCXeY6OsY18hmc5nZOsoL7Ax7IDdgt8t3OOkRCqm7UiMh7n5wbgGnTvuminQe2I9azEGH7FofXQ7tgA1GjbSKbteK5DxdzHjVWE73Q7PENNSR/0rvtYqjW6vrlR7EFZ/5vS5DZD0pg5RDnkj8d5LLSbLsQhSP1WHnJIFWy2tmkZf73Ho6u7++WTLvIHhLd91yVeUxIRpXrmWVuE21vGwnAiGljS/hxrJapKeAYYv1uFBxQINA4QC7xw07p+VGkCgBw7YrTHQZ6t2PiwCcXw7yU8ui0kAzYoqCCuEMdYrhn64zboKFJNAH6pH/8gQh1JRfjrwDMplJWGZsM9rc0DwR+2WbCntKb+4988YwfJrVUwtr9B4PshVADMsIhXCG/i3Pqf6jY7Q3cvSqDhyOxB+5uKRRDq71IER5w8kh2eBH+JYe2l7g/LefT/mcyC6b/60tq34CdiTXNB7LlVTApZkDpluggIxFXu9L8nWp1x3UpXrKKcxsosNgM7yUEsFxYrpyeCqMXbq4JiJSsAUX6qplshVETKEaLveiVw6ZKKwapvcj9UNYEkkAebhrOteJMdqxoaf7omMf8WEdaMNNOzmlzrR1GjSBZsYzXKlsRndr+ob1LwQWwMuVv8FHJIhYDHvGyY5wKCQmESk+3e6V+pbvq1qkDiwOJOAf22wtPipKXh88fYoODocZrf8EE5p1lNBYIf6/4HFE+VUEvoyYH39O+OUlSN1IBS/LVS9gbOPUxYWVGIq/FOxSgWjvc5efoDKBq0I0sG4LkCMCbXBPSsRdgj/Ph7VXO2BzhDbMBixi0aDThM43dsMG6iy+WCv5yhNJX5UiNMU19CM+s8leK7TraqZLyJ6lHBJj8h0k+O3tU8NqPFVPDbaJGhXx+U1N0yhcimR7fQUxXGB2bCZK84xOCUd28gZ5XMrhdKIE/heDcFFk1OxflFTi+UMTlDwDbJLrRPB6pwI2CfnY2hl3v1nRrEoGwl11VU3pznDdjn2WokeLsU49KT947iCW9xSQJRz6FSS3C5rd0gzOeg==
+    properties :
+     x : 6
+     y : 36
+     width : 765
+     height : 24
+    type : 2
+    code_elements :
+     type_code : 3
+     p_codes :
+      -
+        type : 276
+        enabled : false
+      -
+        type : 277
+        enabled : false
+      -
+        type : 278
+        enabled : false
+  -
+    name : BTN_Annuler
+    identifier : 0x24b00f03054828ed
+    internal_properties : CAAAAAgAAAAv+cF7R6fyRtLpyJU+0Qckx8K/7pIuPpQ527I5ZQ+UpY0vU+abcgD7plqsK/fWnDg3tPvhnSyIb+/W2RFiEjEsYf0SYLDjbllftoWzHn3cMwKu1RUCQErajG4xw/mIAuCnxYewysjxzXwlALGhpr/uhJ8jiq+ceWsvs87hMn/dH2XSZdCSYmpG61t1j/8lY4KbhhsIeNoweCK+KpFXaJ92Nb7FYs6IDDrnPgOwj3twpffBfDxmACqZql4fSbVL0lGmBdEnESSp/t8KnPNSyhLhqxD9uClVq7ApnZf9pDe6IwCa15hVtq5P7bqprIiOkJKlfOJ3imqjMptzqnzR5PLntyQAYO+swlMeCFAsLdK9P/PurLy0DHYIFuZX89lVgSfHomj9JCy7fOJF3QLAFx3UMBhFV19H9PU1fk052+lAbRB8eWL9vFmA1b5AncBKrupR3FUabV00GFfVsFoh0UN9Rk2cWekEjeNaEPGF198Plw8K6DELEGt7SEY3rrzwSSaRXTFfpcmunOXji650hmU11CqdtidvaR8hexF0vpLxHeBeBvcFX9jfnm/S4NP/Oe7zL1z//HXdT6RXPXgIXCnBHKdEDfTvRhkD+AqhYoWjX4z7ZxYWOu3kdxW7MLIc86u84GCP3zVCmdMt2gMXF/Tk6dUhBTyIZSz0ljWgAK9KNeMQwHfgP7zgIZfpTvgxAN2E1mh4vgqM9mbMPNFN/EULVCmqK8HvjiOYuwA/bJEyYwr6h3Fo0UbIeKL55F0Ko14l0SYpA22gpdDR/Le1s+jzVIRk9UIqai6/jThW1OT/OdQWiqYMfkt3tlWTrMC+1tcuZZgu5jaFv6GYP1KD9qCZNrMry/aaGigU13u/HRmtf8k62CeXXARolbLUAaWVN4vBBiDT
+    properties :
+     x : 691
+     y : 215
+     width : 80
+     height : 24
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        code : |1+
+         ferme()
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : BTN_Valider
+    identifier : 0x24b00f08054b3c94
+    internal_properties : CAAAAAgAAADP3okvn66oAgtXX27lTJ3IlO8YQC1/Qhiqe2YfkQY5n5OPQXrRiz1RaGEq67mN8C41t0rIlpl0lDdlxQderVNOyF+GEmd5/OMkBClHR+DFF1tMVebrgtqfjpN9y1dOq02RR09wpRj/3TkCCLWQSbMeoGhdFfhKgvrE8TU01Bp/RtU6/qoDu8lFabXrdBXwgAaOJXb3W4sQH6AetBsVB3nu/gJ62IZG7FtNef24TAM+U36D5f9ANVamTZdvVWTfbqAmcNNG7astXyAOnG+PzZBGQ/tq4/K9AuNp1BZcYP8VdZvPbh4aA/j+PtLchIHk1mMqiQjDz3wKwesTMNFbr4ZqwyUSGb0fBAo7bsjJnzMc6Hvr/NA0Sy4dBehBt6XAIsRSr4Hw9wmYgR3MA1XSID+nu41cvXqcZuvPK1p4LTCEYHf6DFQ8LLlvzXyVTjTfq0Yvt3yd54RjXYUFBX4XQOpiTTASbrGB5FwQlCB5YbLo0vY1uioJF1I8DgZ8Yk4Jrs0Grk3+4zrxDel5JpxgIbz6fYdHT7G6eMChebTiSGvs1jV/hhj9tBkCjDcFomUSJB8YuOpCzEa0kApLjtIW2xbgMzqiskziZUr3JrX7JpR0grf6R91ekUwxUdkUXu4J8Fp1VYrkaxATBJn5s7lPBLcNJjYnssA9OiectEZGQjD/tACpdpL4UKFbTc1UPCxCWXDXPXJj5P2FHWiE4VV1VYbeozwsBs9eF860DX2n1u+PkR29EERYpm0bNcgaUOitvh9TO0HdzE90Og8esMQxVDyTQgPXML+y4KmJYROILkdqNYCGHfbNndr2odLuOujRq+bbDkSpUFHwZPnajyekCX2IvaVefMMwCMOtoLeBmx/xa1P6a4vQjCw2G2JWZBDt6+FZRd5x0Is=
+    properties :
+     x : 605
+     y : 215
+     width : 80
+     height : 24
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        internal_properties : CAAAAAgAAAB8whTP8jyNmgkMGIsGPo1+pzoS8WCO0MjlsupNMDb1aWheqcvaLo0QXA3+B5msICF6WlXec3vIsfwkEbdnxkpZPJXHxmGq+kab8JFAmwawQlUbKJZMDFs=
+        code : |1-
+         
+         si SAI_Bucket="" ALORS
+         	erreur("Le nom du bucket n'a pas été renseigné.")
+         	retour
+         FIN
+         SI SAI_Clé="" ALORS
+         	Erreur("Le nom de la clé n'est pas renseigné.")
+         	RETOUR
+         FIN
+         SI SAI_Valeur="" ALORS
+         	Erreur("La valeur associée à la clé n'est pas renseignée.")
+         	RETOUR
+         FIN
+         
+         gpclServeur.BucketOuvre(SAI_Bucket).ObjetEcrit(SAI_Valeur,SAI_Clé)
+         
+         ferme("",vrai)
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : SAI_Valeur
+    identifier : 0x24b00f360584f015
+    internal_properties : CAAAAAgAAAASGrO7S5gj6g3KDGBBKH9mWwel697oov9aS2IfuvqAzaCeUHCgz6fFR19Yd9LbHlxZ+XevjEF2HiyXmwxHNX7XDISM9l/kgELdXII2TA1LU7zwNtLzH0P1CGL57K5FCueFPSajxT4TVaT0WYFrspeei1qK57NMdlnbV4F4k+xVz5rqxVE9UjZ9T5AnLm+D15QYQFA9KYn94cfCWHHzAbQvtsIVoNaz3wViPhzkVgf4I+uVkJqiIFLjQscxCtNJV1o/yWu2Me1Aa39HhCDTWMDtvmVVyZvVoy0G5wd90X/wVm+EwD+Zb+pF3jBXW9qZa8Rf6cSeBs3Yb+usLfQbkK3Y2rzonu0k9UKis4gMqiN3xeZd2PjP4nCbwc7ehlL5Dp+vV2UQP9kAF/Zf5BAahSuUxbPxjuuouSIt3HD+fhOrZNvLK45KeibThHaQEgEKdGnag3/S4bMyAM+fwNGl/BMHr+niIXNaBjGClVbPYL8N+p+8lAEAu9MEc4rZePDgHmwDCsvljPZMNru+x55Fh2EaJ9vf5UVtvzSEIjTdEQqkmxPDRj8WR+QPtWhIGpy+0uyLaHJuiB50/cYgU+g/YRG70hU6+PJPdYJS9N5ES7hgo2FHz2LASZp0D0//jykZ6+nbxJRLyiggFw9Wbezp+mWAeF1juAByXr20Yc1xPmnI6VYu2y85e0DsRdx5G8g6TEFHL8fM5p8yzZ1M5yKnTJQh+yEISNMBGK1BytivpMoOSrEbiET7jNadiP1MGGxSSoicnO5e2Pn9E+X0uTUYhr8gMpYO7zZxKDBw1AT18hLYfhRQkufNnh32NlzVYMwAynVqijOKj41jVr8n4mjpIBtQJk9L9uKbfE3O4MBd5toKrxAlI1OB53zBBiy1SYbubbz0UDCreRmtiQAE+0y1KLWUIGKzrf8f/41uPFePdFHC422FaXMNaj6VX87nOV3f/X83MiBsCw7ZgJalqABTO7ceN2vxip+uhlrKH6qx9yk4z/FP78rFsoornY0CwFbLmMIs0xczPZpzqKdHxTl6ibQzUnY4qyEGFNpkkkBqHryvNOg4MDdOaiVbNxjBy9xiu60tBlhUTcl4iAiuTq5SPyXHq8t2tpK2nZ/1dhcmowup88xEiV+tGwF3RONWZ6LQlgGepdFpdpIs9g2caKIos6nvOoC8UhaMOyDncAmJ5iygngzolZpGH0TKIQzPkqjZ2WvqyzcfYy1rQURqaDRlccAPIeVXWpDwFctjTGMrZb1NUo0PRrmBxRB28NzPLqR9+pawNxCaTzpxp1ohrBLs8pNKDWCGtnhZIczsxgiFbgBREMdY6cSlK/0iVPbW9VRomKSVXCB7JYcvpVGMkhDUZrL98zW064Fr9zSTL6P9eQ==
+    properties :
+     x : 6
+     y : 66
+     width : 765
+     height : 143
+    type : 2
+    code_elements :
+     type_code : 3
+     p_codes :
+      -
+        type : 276
+        enabled : false
+      -
+        type : 277
+        enabled : false
+      -
+        type : 278
+        enabled : false
+  -
+    name : SAI_Bucket
+    identifier : 0x24b011a205b66809
+    internal_properties : CAAAAAgAAACZjjyVnbG1QV7PCoqhSKQ2jkCKJIBvtRnlnSMDqAg0PiR6iC0xgrWXiGhGOEk2vbg4zTCFb4CqQlnS7JXMok635q/bxuJNgJwzYiyYLOP12L0Qd7P6T4j1z0FCWyY0hMtsl28YuaLdtg7DY3EgOjv3ClZKIKXrdVCmErCAoXzZzUyzc6IOcL/SUVU1Q2UPFqtj968R6so2rPR9VYXGHHWPUTKwGI+DJqfjf8qjpnurjRFxdj/acIQliVCOSJ/LSIAyPU9KhyUizvJ8P61MVVndD2CVZL09vnYRQjDleagmh9g04CV6kYPDZRXFnKRDvWgnk5s0uXM/L6FKMoicXFek1iTmriE3ErX2AVULjQE6DSrS3LQN4vGkT4Dx1LE5fcO0je3fnO9FDYkjnwoiQ995+YcC2eox+But0tUdm5We0Gw3iZqejxQ2oq65LtSYyZda1gyBHZqwX7HreGfKk8PH/r/pDnXBMnVTWraBQePzHqB4c/5PF+WEgiZllwpZukluNJrm5tlTCDH+NWQ49bQQaOgmKAFDHv+K+yHzfAjK+OqXYWEaGw/fUXvKoRIXVKUctNMBQ5bgK/4G3Db7Q9gD4lqilOwu88b5mfNjHBCCCFEeTfmqSImHa3O1PVIR1SUP2a5jFIXjP16CDO7rvooQo9ka7dGoxL2y916vXLIEfgAzzH+lOBOifQxf8yIbVTkGKTN1tof3/ysg2/v+dxSNKmuIFDa/2kUBH2W0gSNlTBnKj79AmIDiSXqhST3z4ba75nZ05dC8mMkYXBIUZZUvr/7tLETDn5qYEU43B/Lz++ibtJR3w8tQHBQWkWpCUTZfHfciPGyj7biS3zlLAvmm9ZmQ91JGMXMedenmaOwzowqoS+E/qNENpYSg+9kW5yd4oRIO0CVDcrnfAcu2Ek03rKF0YLVLe5dhmz8a4S8MUrQvglIymWihUVGkCw8apIpitK6wgMcjhRhjJN645JuJlSNWhqUXaCfWjOwJGsX1Rc5J3J0hHuNM8rABsvUjVmAln7QNZmYnxMcaAoY5slAPAwZGpV6Ow1G1A8FCFCHgxFTkeyZ4cM2xUasMc6xpc00hkMX38iRP5Wc2vF3kbyN3Aq1ZqYro/jjZSi1e4ul5R3p9OtaOYCi+5bTd4teZU2ksb9DAM/oLgHSOT2qP3lrBFz1VHvZdFKiVWNVPxM/rKv3eJzxP1RvLnDusoXiN6h6ZWwo1y5VGz/S/HOY3/PH3nMIR2//mf5rTYCik75VXHpGpKcL9O1A6u654vvK+SzStcwxuxqZY+9RihvSbf1qRuzi1Z+iam6SAg6Xng7l/g8ISaGxTa7XVxhPnPeHTbIcKYXGOfikmfZPYQW08PDYkR2KNNC44MIaUlSxwcqOMlLdT/GGChCcMW/M=
+    properties :
+     x : 6
+     y : 6
+     width : 765
+     height : 24
+    type : 2
+    code_elements :
+     type_code : 3
+     p_codes :
+      -
+        type : 276
+        enabled : false
+      -
+        type : 277
+        enabled : false
+      -
+        type : 278
+        enabled : false
+ menu :
+  name : _Menu
+  identifier : 0x292573e513b5f221
+  internal_properties : CAAAAAgAAADAfZ27Q+jJ/MBXHLGCb7PyE2Yqjvuo9mAX2ZN+LLuyQtzms1431znXR0sNCCeLESXZp1gqmo+m2mUhb2ELR2phZ8VOgUSyXddfQyxpxffipvH/iiFuFkCLgpjx1Ah9/9/ndeRpWb0s9Qcjy8oPtW3aMcRtuglgDe5Ch9/jnC/Drp19/hhf+qz96diLw5T0yWlzg33c/E8hhMwUBdSOV69/8iDQGLfTvLoTvV3YkiQ5Dce7dxB2gUx1AVvVTykQMm7G+0haIOV568KMGgPEJluRN2XjgQ11Tb8vVxt6P2g=
+  options : []
+ languages :
+  - fr-FR
+ popup_menus : []
+ message_bar :
+  internal_properties : CAAAAAgAAAAjFWXItEk/EPvcbGR+hALkgRfdOpVtIn+yZNxHnmSRFJegE/AnD2HbGAaMfhGCqfzkryHG9FVhjtF+iQYkZ59QBQ88Okhh0vjCoVhOagox2hvIqrJnU30QK15/ZA==
+ actionbar : {}
+ code_elements :
+  type_code : 1
+  p_codes :
+   -
+     code : |1-
+      PROCEDURE MaFenêtre( gpclServeur est un riakConnexion dynamique, gsNomBucket est une chaine, gsNomClé est une chaine = "" )
+      
+      si gsNomBucket<>"" alors
+      	SAI_Bucket = gsNomBucket
+      	SAI_Bucket..etat = grisé
+      	si gsNomClé<>"" ALORS
+      		SAI_Clé = gsNomClé
+      		SAI_Clé..etat = grisé
+      	
+      		bufVal est un buffer
+      		gpclServeur.BucketOuvre(gsNomBucket).ObjetLit(bufVal,gsNomcle)
+      		SAI_Valeur = bufval
+      	FIN
+      FIN
+      
+      MaFenêtre..ValeurRenvoyée = faux
+   -
+     code : |1+
+      
+      
+     type : 34
+   -
+     code : |1+
+      
+      
+     type : 234
+   -
+     code : |1+
+      
+      
+     type : 165
+   -
+     code : |1+
+      
+      
+     type : 177
+   -
+     type : 180
+     enabled : false
+   -
+     type : 230
+     enabled : false
+   -
+     code : |1+
+      
+      
+     type : 2
+ code_parameters :
+  internal_properties : CAAAAAgAAAAspXRQsX4kpYpRJzI8SMGEUfXYJhQeqig0H9mPZLI9hoPnkeFEnSQ8t7JVd8VUY9eLyST/2DyAYB+9rK7lbHVOclfSdkhgAQ9dNjlmStKMpPl9
+  original_name : Modele1
+resources :
+ string_res :
+  identifier : 0x1148ab690b045de0
+  internal_properties : CAAAAAgAAACyXVFaObH4lOGSEHJoZf1MD49w+XTw2LScZCP/urkWFwy+HYJdyQ3umA==
+custom_note :
+ internal_properties : CAAAAAgAAAC68/W0/adbG0nFCRhrE42B5HRnbDzVHaz86sSQyxlBk7I=
+rad :
+ internal_properties : CAAAAAgAAABoAN7PLpwJW3EiA7WVZdCA5EwrCA1rvutcDHooMWKe
